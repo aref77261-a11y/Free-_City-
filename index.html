@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>المدينة الحرة — تشغيل</title>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="/assets/css/gemini-code-1786994450824.css" />
+  <link rel="stylesheet" href="/assets/css/gemini-code-1786990974676.css" />
+</head>
+<body>
+  <div class="top-bar">
+    <div>المدينة الحرة</div>
+    <div>الدورة: <span id="turn-val">1</span></div>
+  </div>
+
+  <main class="grid-container" id="city-grid" aria-label="شبكة المدينة"></main>
+
+  <button class="fab" id="next-turn" title="الدورة التالية">▶</button>
+
+  <script src="/assets/js/gemini-code-1786992445774.js" defer></script>
+  <script>
+    // توصيل زر الدورة بدالة nextTurn الموجودة في الـ JS
+    document.addEventListener('DOMContentLoaded', function () {
+      const grid = document.getElementById('city-grid');
+      // إنشاء 10x10 خلايا واجهة بسيطة لعرض الشبكة
+      for (let r = 0; r < 10; r++) {
+        for (let c = 0; c < 10; c++) {
+          const cell = document.createElement('div');
+          cell.className = 'cell';
+          cell.dataset.row = r;
+          cell.dataset.col = c;
+          grid.appendChild(cell);
+        }
+      }
+      document.getElementById('next-turn').addEventListener('click', function () {
+        if (typeof nextTurn === 'function') nextTurn();
+      });
+    });
+  </script>
+</body>
+</html>
