@@ -14,6 +14,14 @@
     <div>الدورة: <span id="turn-val">1</span></div>
   </div>
 
+  <!-- شريط الموارد (مطلوب لتجنّب أخطاء updateUIElements) -->
+  <div class="resources" style="margin:8px 12px; font-size:14px;">
+    المال: <span id="money-val">0</span> |
+    الطاقة: <span id="energy-val">0</span> |
+    الماء: <span id="water-val">0</span> |
+    السكان: <span id="pop-val">0</span>
+  </div>
+
   <main class="grid-container" id="city-grid" aria-label="شبكة المدينة"></main>
 
   <button class="fab" id="next-turn" title="الدورة التالية">▶</button>
