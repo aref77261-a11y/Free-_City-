@@ -1,50 +1,75 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>المدينة الحرة — تشغيل</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="assets/css/gemini-code-1786994450824.css" />
-  <link rel="stylesheet" href="assets/css/gemini-code-1786990974676.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2ecc71">
+    <title>المدينة الحرة</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="top-bar">
-    <div>المدينة الحرة</div>
-    <div>الدورة: <span id="turn-val">1</span></div>
-  </div>
+    <div id="game-container">
+        <!-- Resources Bar -->
+        <div id="resources-bar">
+            <div class="resource" data-type="money">
+                <span class="resource-icon">💰</span>
+                <span class="resource-value" id="res-money">1000</span>
+            </div>
+            <div class="resource" data-type="energy">
+                <span class="resource-icon">⚡</span>
+                <span class="resource-value" id="res-energy">100</span>
+            </div>
+            <div class="resource" data-type="water">
+                <span class="resource-icon">💧</span>
+                <span class="resource-value" id="res-water">100</span>
+            </div>
+            <div class="resource" data-type="food">
+                <span class="resource-icon">🍞</span>
+                <span class="resource-value" id="res-food">100</span>
+            </div>
+            <div class="resource" data-type="population">
+                <span class="resource-icon">👥</span>
+                <span class="resource-value" id="res-population">0</span>
+            </div>
+            <div class="resource" data-type="happiness">
+                <span class="resource-icon">😊</span>
+                <span class="resource-value" id="res-happiness">50</span>
+            </div>
+            <div class="resource" data-type="sustainability">
+                <span class="resource-icon">🌱</span>
+                <span class="resource-value" id="res-sustainability">50</span>
+            </div>
+        </div>
 
-  <!-- شريط الموارد (مطلوب لتجنّب أخطاء updateUIElements) -->
-  <div class="resources" style="margin:8px 12px; font-size:14px;">
-    المال: <span id="money-val">0</span> |
-    الطاقة: <span id="energy-val">0</span> |
-    الماء: <span id="water-val">0</span> |
-    السكان: <span id="pop-val">0</span>
-  </div>
+        <!-- Game Title -->
+        <header id="game-header">
+            <h1>🏙️ المدينة الحرة</h1>
+            <p>بني مدينتك وطوّرها!</p>
+        </header>
 
-  <main class="grid-container" id="city-grid" aria-label="شبكة المدينة"></main>
+        <!-- City Grid -->
+        <div id="city-grid"></div>
 
-  <button class="fab" id="next-turn" title="الدورة التالية">▶</button>
+        <!-- Building Selector Modal -->
+        <div id="building-modal" class="modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>🏗️ اختر مبنى</h2>
+                    <button class="modal-close" onclick="closeBuildingModal()">✕</button>
+                </div>
+                <div class="modal-body" id="building-list"></div>
+            </div>
+        </div>
 
-  <script src="assets/js/gemini-code-1786992445774.js" defer></script>
-  <script>
-    // توصيل زر الدورة بدالة nextTurn الموجودة في الـ JS
-    document.addEventListener('DOMContentLoaded', function () {
-      const grid = document.getElementById('city-grid');
-      // إنشاء 10x10 خلايا واجهة بسيطة لعرض الشبكة
-      for (let r = 0; r < 10; r++) {
-        for (let c = 0; c < 10; c++) {
-          const cell = document.createElement('div');
-          cell.className = 'cell';
-          cell.dataset.row = r;
-          cell.dataset.col = c;
-          grid.appendChild(cell);
-        }
-      }
-      document.getElementById('next-turn').addEventListener('click', function () {
-        if (typeof nextTurn === 'function') nextTurn();
-      });
-    });
-  </script>
+        <!-- Toast Container -->
+        <div id="toast-container"></div>
+    </div>
+
+    <script src="assets/js/game.js"></script>
 </body>
 </html>
